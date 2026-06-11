@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FWD Life Long 90/2 | ออมสั้น 2 ปี คุ้มครองยาวถึงอายุ 90</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+    :root {
+        --primary: #e86614; 
+        --primary-light: #fff2e8;
+        --secondary: #06C755; 
+        --navy: #0B2B46;
+        --gold: #d4af37;
+        --text-dark: #222222;
+        --text-grey: #555555;
+        --bg-color: #f4f6f8;
+        --border-color: #e2e8f0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+        font-family: 'Prompt', sans-serif;
+        background-color: var(--bg-color);
+        margin: 0; padding: 0; color: var(--text-dark);
+        word-break: keep-all; overflow-wrap: break-word;
+    }
+
+    #main-content {
+        padding-bottom: 160px; 
+    }
+
+    /* --- Banner Style --- */
+    .header-banner { max-width: 1200px; margin: 30px auto 0; padding: 0 20px; position: relative; }
+    .header-banner img {
+        width: 100%; height: auto; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        display: block; background-color: #e2e8f0; min-height: 200px; object-fit: cover;
+    }
+    .header-title-box {
+        background: linear-gradient(135deg, #ffffff, #fdfaf0);
+        padding: 25px 40px; border-radius: 16px; color: var(--navy); 
+        margin: 25px 30px 0 30px !important; 
+        position: relative; z-index: 2; box-shadow: 0 10px 25px rgba(232, 102, 20, 0.15); text-align: center;
+        border: 2px solid #fce4d6;
+    }
+    .header-title-box h1 { margin: 0; font-size: 28px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--navy); }
+    .header-title-box p { margin: 8px 0 0; font-size: 18px; color: var(--primary); font-weight: 600; }
+
+    .container { max-width: 1200px; margin: 30px auto 40px; padding: 0 20px; display: flex; gap: 30px; align-items: flex-start; }
+
+    /* --- Left Panel --- */
+    .left-panel { width: 420px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; position: sticky; top: 20px; }
+    
+    .card { background: linear-gradient(to bottom, #ffffff, #fffaf5); border-radius: 16px; padding: 25px; box-shadow: 0 10px 30px rgba(232, 102, 20, 0.08); border: 1px solid #fce4d6; border-top: 5px solid var(--primary); }
+
+    .card h2 { font-size: 20px; margin: 0 0 20px 0; color: var(--text-dark); display: flex; align-items: center; gap: 10px; }
+    .card h2 i { color: var(--primary); }
+
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--text-grey); }
+
+    .btn-group { display: flex; border: 1px solid #fce4d6; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+    .btn-opt { flex: 1; padding: 12px; border: none; background: white; cursor: pointer; font-family: 'Prompt'; font-size: 15px; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 8px; }
+    .btn-opt.active { background: var(--primary); color: white; font-weight: 600; }
+
+    input[type="number"], input[type="text"], select {
+        width: 100%; padding: 12px 15px; border: 1px solid #fce4d6; border-radius: 12px; font-family: 'Prompt'; font-size: 15px; background-color: #ffffff; outline: none; transition: border 0.3s; box-shadow: inset 0 2px 5px rgba(0,0,0,0.01);
+    }
+    input[type="number"]:focus, input[type="text"]:focus, select:focus { border-color: var(--primary); background-color: white; box-shadow: 0 0 0 3px var(--primary-light); }
+
+    .sum-box { background: #ffffff; border-radius: 12px; padding: 20px; border: 1px solid #fce4d6; box-shadow: 0 4px 15px rgba(232, 102, 20, 0.05); }
+    
+    input[type=range] { -webkit-appearance: none; width: 100%; height: 8px; background: #e0e0e0; border-radius: 4px; outline: none; margin: 20px 0; }
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none; appearance: none; width: 40px; height: 40px; border-radius: 50%; background-color: white; border: 2px solid var(--primary); cursor: pointer; box-shadow: 0 2px 6px rgba(232, 102, 20, 0.3); background-position: center; background-repeat: no-repeat; background-size: 24px;
+    }
+    input[type=range].gender-m::-webkit-slider-thumb { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-size='22'%3E👨%3C/text%3E%3C/svg%3E"); }
+    input[type=range].gender-f::-webkit-slider-thumb { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-size='22'%3E👩%3C/text%3E%3C/svg%3E"); }
+
+    .quick-sums { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 5px; }
+    .quick-sums button { padding: 8px 0; font-size: 13px; font-family: 'Prompt'; background: white; border: 1px solid #fce4d6; border-radius: 8px; cursor: pointer; color: var(--text-dark); font-weight: 500; transition: 0.2s; text-align: center; }
+    .quick-sums button:hover { background: var(--primary); color: white; border-color: var(--primary); }
+
+    /* --- Right Panel --- */
+    .right-panel { flex: 1; display: flex; flex-direction: column; gap: 20px; width: 100%; }
+    
+    .visual-card { background: linear-gradient(to bottom, #ffffff, #fffaf5); border-radius: 16px; box-shadow: 0 10px 30px rgba(232, 102, 20, 0.08); border: 2px solid #fce4d6; padding: 30px; display: none; position: relative; overflow: hidden; }
+    .visual-card.active { display: block; animation: fadeIn 0.5s; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* --- PRO Visual Styles --- */
+    .header-pro { margin-bottom: 20px; }
+    .header-pro h2 { color: var(--navy); margin: 0 0 5px 0; font-size: 28px; font-weight: 700; }
+    .header-pro h2 span { color: var(--primary); }
+    .header-pro p { margin: 0; font-size: 16px; color: var(--text-grey); font-weight: 500; }
+    
+    .lux-box { 
+        background-color: var(--bg-color); border: 1px solid #e2e8f0; border-radius: 16px; 
+        padding: 25px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); 
+        position: relative; overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .lux-box:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(232, 102, 20, 0.15); }
+    .lux-box-title { color: var(--navy); font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px; margin-bottom: 15px;}
+    .lux-box-title i { color: var(--primary); }
+    
+    .cov-bars-wrapper { 
+        display: flex; justify-content: center; align-items: flex-end; 
+        margin-bottom: 20px; gap: 4px; padding: 15px; background: white; 
+        border-radius: 12px; border: 1px solid #eee; position: relative; z-index: 2; 
+    }
+    .cov-bar { 
+        color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); box-sizing: border-box; 
+        display: flex; flex-direction: column; justify-content: center; text-align: center; padding: 10px;
+        flex: 1; min-width: 0;
+    }
+    .cov-label { font-size: 11px; opacity: 0.95; margin-bottom: 3px; font-weight: 500; white-space: nowrap; }
+    .cov-val { font-size: 16px; font-weight: 700; line-height: 1; color: #fff; }
+    
+    .bar-100 { background: #f0853e; height: 80px; border-radius: 6px 0 0 6px; }
+    .bar-200 { background: #b84f0f; height: 140px; border-radius: 0 6px 6px 0; }
+    
+    .lux-pay-pill { display: inline-block; border: 1px solid #0a2e2d; color: white; padding: 6px 20px; border-radius: 50px; font-size: 13px; font-weight: 600; background: #0a2e2d; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(10,46,45,0.15); }
+    .lux-divider { border-top: 1px dashed #e2cbb9; margin: 0 0 20px 0; }
+    
+    .lux-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+    .cb-left-text { font-size: 14px; color: #444; font-weight: 600; }
+    .cb-left-val { font-size: 18px; font-weight: 700; color: var(--primary); margin-top: 3px; }
+    .cb-left-val span { font-size: 14px; font-weight: 500; color: #555; }
+    
+    .mat-box-new { background: #d15a10; color: white; padding: 15px 25px; border-radius: 12px; text-align: center; box-shadow: 0 8px 20px rgba(209, 90, 16, 0.3); }
+    .mat-box-sub { font-size: 12px; opacity: 0.95; margin-bottom: 3px; font-weight: 500;}
+    .mat-box-val { font-size: 24px; font-weight: 700; color: #fff; }
+    
+    .click-hint { text-align: center; font-size: 13px; color: #888; margin-top: 15px; font-weight: 500; }
+    .click-hint i { color: var(--primary); margin-right: 5px;}
+
+    .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .sg-card { background: #ffffff; border: 1px solid #fce4d6; padding: 20px 25px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.03); display: flex; flex-direction: column; }
+    .sg-title { font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 15px; border-bottom: 2px solid #fffaf5; padding-bottom: 10px; }
+    .sg-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 15px; color: var(--text-dark); }
+    .sg-val { font-weight: 700; font-size: 16px; color: var(--primary); }
+    
+    .highlight-total { background: linear-gradient(135deg, var(--gold), #b8952a); color: white; text-align: center; padding: 15px; font-weight: 500; border-radius: 10px; margin-top: auto; box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2); }
+    .highlight-total span { font-size: 26px; font-weight: 700; display: block; margin-top: 3px; line-height: 1.1; }
+
+    /* --- Summary Premium Bar --- */
+    .premium-summary-card { border: 2px solid var(--primary); border-radius: 12px; padding: 25px 30px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to right, #fffaf5, #ffffff); margin-bottom: 10px; box-shadow: 0 8px 25px rgba(232, 102, 20, 0.15); }
+    .display-premium-main { font-size:40px; font-weight:700; color:var(--primary); line-height:1; }
+
+    /* --- Green Button --- */
+    .btn-action-main {
+        flex: 1; padding: 15px; border: none; border-radius: 12px; font-family: 'Prompt', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.3s; text-align: center; color: white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .btn-action-main.blue { background: linear-gradient(135deg, #1fa4b6, #157e8c); }
+    .btn-action-main.green { background: linear-gradient(135deg, var(--secondary), #05a044); }
+    .btn-action-main:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+
+    .age-dob-box { background-color: #ffffff; border: 1px solid #fce4d6; padding: 15px; border-radius: 12px; display: flex; flex-wrap: wrap; gap: 15px; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.02);}
+    .age-warning { color: #e74c3c; font-size: 13px; margin-top: 8px; font-weight: 500; display: none; text-align: center; }
+
+    .agent-card-main { 
+        padding: 20px; 
+        background: #ffffff; 
+        border-radius: 16px; 
+        box-shadow: 0 4px 15px rgba(232, 102, 20, 0.08); 
+        border: 1px solid #fce4d6; 
+    }
+    .agent-profile-main { 
+        display: flex; align-items: center; justify-content: flex-start; gap: 20px; text-align: left; 
+    }
+    .agent-photo-main { 
+        width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); 
+    }
+    .agent-details-main { display: flex; flex-direction: column; }
+    .agent-details-main .care-by { font-size: 13px; color: var(--text-grey); margin-bottom: 2px;}
+    .agent-details-main .name { font-size: 18px; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
+    .agent-details-main .role { font-size: 14px; font-weight: 600; color: var(--primary); margin-top: 2px;}
+    .agent-details-main .license { font-size: 12px; color: var(--text-grey); margin-top: 5px; margin-bottom: 10px;}
+    .agent-details-main .btn-call { 
+        display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
+        background: var(--primary); color: white; padding: 8px 18px; border-radius: 999px; 
+        text-decoration: none; font-size: 15px; font-weight: 700; box-shadow: 0 4px 10px rgba(232,102,20,0.3); width: fit-content;
+    }
+
+    /* --- FIXED STICKY BAR CSS --- */
+    .sticky-bar {
+        position: fixed; bottom: 0; left: 0; width: 100%; background: white;
+        box-shadow: 0 -5px 20px rgba(0,0,0,0.08); padding: 12px 0; z-index: 900;
+        border-top: 3px solid var(--primary);
+        display: none; 
+    }
+    .sticky-content { max-width: 1200px; margin: auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; gap: 15px; }
+    .btn-line {
+        background: #06C755; color: white; padding: 12px 25px; border-radius: 10px; cursor: pointer;
+        text-decoration: none; font-weight: 600; font-size: 16px; display: flex; align-items: center; gap: 8px; white-space: nowrap; box-shadow: 0 4px 10px rgba(6, 199, 85, 0.2); transition: 0.2s;
+    }
+    .btn-line:hover { background: #05a044; transform: translateY(-2px); }
+
+    /* =========================================
+       REPORT OVERLAY STYLES 
+       ========================================= */
+    #report-overlay {
+        display: none; position: absolute; top: 0; left: 0; width: 100%; min-height: 100vh;
+        background: #f4f6f8; z-index: 999999; padding: 20px 0; box-sizing: border-box;
+    }
+    
+    #report-content-wrapper {
+        width: 100%; overflow-x: auto; padding: 0 20px 100px 20px; 
+    }
+    
+    .close-report-btn {
+        position: fixed; top: 15px; right: 15px; background: #e86614; color: white;
+        border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 20px;
+        cursor: pointer; z-index: 1000000; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        display: flex; align-items: center; justify-content: center; transition: 0.2s;
+    }
+    .close-report-btn:hover { background: #d15a10; transform: scale(1.05); }
+
+    .action-buttons { text-align: center; margin-top: 40px; margin-bottom: 80px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+    .btn-act { padding: 12px 15px; border-radius: 8px; font-family: 'Prompt'; cursor: pointer; font-size: 15px; border: none; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; width: 150px; }
+    .btn-print { background: #333; color: white; }
+    .btn-save { background: #06C755; color: white; box-shadow: 0 4px 15px rgba(6, 199, 85, 0.3); }
+    .btn-pdf { background: #e74c3c; color: white; box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3); }
+    .btn-act:hover:not(:disabled) { opacity: 0.9; transform: translateY(-2px); }
+    .btn-act:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    #image-lightbox {
+        display: none; position: fixed; z-index: 99999999; left: 0; top: 0; 
+        width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); 
+        overflow: hidden; cursor: zoom-out;
+    }
+    #image-lightbox img {
+        margin: auto; display: block; max-width: 100%; max-height: 100%; 
+        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+        object-fit: contain;
+    }
+    .lightbox-close {
+        position: absolute; top: 20px; right: 30px; color: #fff; 
+        font-size: 40px; font-weight: bold; cursor: pointer; z-index: 2;
+    }
+
+    @media print {
+        body, * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+        #main-content, #sticky-bar, .action-buttons, .close-report-btn { display: none !important; }
+        body { background: white; padding: 0; }
+        #report-overlay { position: static; min-height: auto; padding: 0; display: block !important; background: white !important; }
+        #report-content-wrapper { padding: 0 !important; overflow: visible !important; }
+        #capture-area { box-shadow: none !important; margin: 0 auto !important; }
+    }
+
+    @media (max-width: 900px) {
+        .container { flex-direction: column; align-items: stretch; margin-top: 15px; padding: 0 10px; }
+        .left-panel { width: 100%; position: static; gap: 15px; }
+        .header-title-box { margin: 15px 15px 0 15px !important; padding: 15px 20px; }
+        .header-title-box h1 { font-size: 22px; flex-wrap: wrap; text-align: center; }
+        .header-title-box p { font-size: 14px; }
+        .card, .visual-card { padding: 20px 15px; }
+        .age-dob-box { flex-direction: column; align-items: stretch; gap: 10px; }
+        .quick-sums { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+        .quick-sums button { flex: 1 1 30%; min-width: 70px; padding: 10px 5px; }
+        .summary-grid { grid-template-columns: 1fr; gap: 15px; }
+        .sg-row { flex-direction: column; align-items: flex-start; gap: 5px; border-bottom: 1px solid #fce4d6; padding-bottom: 8px; }
+        .sg-row:last-child { border-bottom: none; }
+        .sg-row span { font-size: 14px; }
+        .sg-row span.sg-val { font-size: 18px; text-align: left; width: 100%; color: var(--primary); }
+        .lux-box { padding: 20px 15px; }
+        
+        .cov-bars-wrapper { flex-wrap: wrap; gap: 6px; }
+        .cov-bar { height: auto !important; padding: 12px 5px; border-radius: 6px !important; }
+        .cov-val { font-size: 16px; }
+        
+        .lux-footer { flex-direction: column; text-align: center; gap: 20px; }
+        .mat-box-new { width: 100%; text-align: center; box-sizing: border-box; }
+        .premium-summary-card { flex-direction: column; text-align: center; gap: 15px; padding: 20px 15px; }
+        .premium-summary-card > div:last-child { text-align: center !important; }
+        
+        .sticky-content { flex-direction: row; justify-content: space-between; padding: 0 15px; }
+        .sticky-content > div:first-child { text-align: left; }
+        .btn-line { padding: 10px 15px; font-size: 14px; }
+        
+        #report-content-wrapper { padding: 0 10px; }
+        .btn-act { width: 100%; justify-content: center; }
+        
+        .btn-action-main { font-size: 14px; padding: 12px; }
+    }
+</style>
+</head>
+<body>
+
+<div id="main-content">
+    <div class="header-banner">
+        <img src="banner.jpg" alt="FWD Life Long 90/2" onerror="this.src='https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=1200&h=400&auto=format&fit=crop'">
+        <div class="header-title-box">
+            <h1>เอฟดับบลิวดี ไลฟ์ลอง เซฟวิ่ง 90/2</h1>
+            <p>ชำระเบี้ยสั้นเพียง 2 ปี คุ้มครองยาวถึงอายุ 90 ปี พร้อมรับเงินคืนทุกปีสูงสุด 7%</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="left-panel">
+            <div class="card">
+                <h2><i class="fa-solid fa-calculator"></i> คำนวณเบี้ยประกัน</h2>
+                
+                <div class="form-group">
+                    <label>ชื่อ-นามสกุล ลูกค้า (เพื่อออกใบเสนอราคา)</label>
+                    <input type="text" id="cust-name" placeholder="ระบุชื่อ-นามสกุลลูกค้า">
+                </div>
+
+                <div class="form-group">
+                    <label>เพศผู้เอาประกันภัย</label>
+                    <div class="btn-group">
+                        <button class="btn-opt active" id="m-btn" onclick="setGender('male')"><i class="fa-solid fa-mars"></i> ชาย</button>
+                        <button class="btn-opt" id="f-btn" onclick="setGender('female')"><i class="fa-solid fa-venus"></i> หญิง</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="age-dob-box">
+                        <div style="flex: 1; min-width: 90px;">
+                            <label style="margin-bottom: 5px;">อายุ (ปี)</label>
+                            <input type="number" id="age-input" value="30" min="0" max="70" oninput="handleManualAge()" style="text-align: center;">
+                        </div>
+                        <div style="font-size: 13px; color: var(--text-grey); font-weight: 500; text-align: center;">หรือ</div>
+                        <div style="flex: 2; min-width: 180px;">
+                            <label style="color: var(--primary); margin-bottom: 5px; text-align: center;">ระบุวันเกิดเพื่อหาอายุจริง</label>
+                            <div style="display: flex; gap: 5px; justify-content: center;">
+                                <select id="dob-day" style="padding: 12px 5px;" onchange="calculateAgeFromDOB()"><option value="">วัน</option></select>
+                                <select id="dob-month" style="padding: 12px 5px;" onchange="calculateAgeFromDOB()">
+                                    <option value="">เดือน</option>
+                                    <option value="1">ม.ค.</option><option value="2">ก.พ.</option><option value="3">มี.ค.</option><option value="4">เม.ย.</option>
+                                    <option value="5">พ.ค.</option><option value="6">มิ.ย.</option><option value="7">ก.ค.</option><option value="8">ส.ค.</option>
+                                    <option value="9">ก.ย.</option><option value="10">ต.ค.</option><option value="11">พ.ย.</option><option value="12">ธ.ค.</option>
+                                </select>
+                                <select id="dob-year" style="padding: 12px 5px;" onchange="calculateAgeFromDOB()"><option value="">พ.ศ.</option></select>
+                            </div>
+                            <div id="exact-age-display" style="font-size: 13px; color: var(--primary); margin-top: 8px; font-weight: 500; text-align: center; min-height: 18px;"></div>
+                        </div>
+                    </div>
+                    <div id="age-warning" class="age-warning"><i class="fa-solid fa-circle-exclamation"></i> แบบประกันนี้รับประกันตั้งแต่อายุ 1 เดือน 1 วัน - 70 ปีเท่านั้น</div>
+                </div>
+
+                <div class="form-group">
+                    <div class="sum-box">
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
+                            <label style="margin: 0; color: var(--text-dark); font-weight: 600;">ทุนประกันภัยหลัก</label>
+                            <strong style="color: var(--primary); font-size: 22px;"><span id="sum-display-text">100,000</span> บาท</strong>
+                        </div>
+
+                        <div style="margin-top: 12px; margin-bottom: 5px; display: flex; align-items: center; gap: 10px;">
+                            <label style="font-size: 13px; color: var(--text-grey); white-space: nowrap;">หรือระบุเบี้ยที่ต้องการ (บ./ปี):</label>
+                            <input type="number" id="custom-premium-input" placeholder="ใส่เบี้ยประกัน" oninput="calcSumFromPremium(this.value)" style="padding: 8px 12px; font-size: 15px; color: var(--primary); font-weight: 600; width: 100%;">
+                        </div>
+
+                        <input type="range" id="sum-slider" class="gender-m" min="50000" max="10000000" step="50000" value="100000" oninput="handleSlider(this.value)">
+                        <input type="hidden" id="sum-input" value="100000">
+                        
+                        <div class="quick-sums">
+                            <button onclick="setSum(100000)">1 แสน</button>
+                            <button onclick="setSum(300000)">3 แสน</button>
+                            <button onclick="setSum(500000)">5 แสน</button>
+                            <button onclick="setSum(1000000)">1 ล้าน</button>
+                            <button onclick="setSum(5000000)">5 ล้าน</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label>งวดการชำระเบี้ย</label>
+                    <div class="btn-group">
+                        <button class="btn-opt active" id="p-year" onclick="setPeriod('year')">รายปี</button>
+                        <button class="btn-opt" id="p-half" onclick="setPeriod('half')">ราย 6 เดือน</button>
+                        <button class="btn-opt" id="p-month" onclick="setPeriod('month')">รายเดือน</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="agent-card-main">
+                <div class="agent-profile-main">
+                    <img src="agent.png" alt="จรัสพร ศรีฉันทะมิตร" class="agent-photo-main" onerror="this.src='https://placehold.co/300x300/f5f5f5/999?text=Agent'">
+                    <div class="agent-details-main">
+                        <div class="care-by">ที่ปรึกษาผู้วางแผนและดูแล:</div>
+                        <div class="name">จรัสพร ศรีฉันทะมิตร (มด)</div>
+                        <div class="role">ตัวแทนประกันชีวิต / <span style="font-weight: 300;">สนง.ตัวแทน FWD นวนคร</span></div>
+                        <div class="license">ใบอนุญาตเลขที่: <strong>6901011517</strong> </div>
+                        <a href="tel:0914649495" class="btn-call"><i class="fa-solid fa-phone"></i> 091-464-9495</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            
+            <div id="visual-pro" class="visual-card active">
+                <div class="header-pro">
+                    <h2>FWD <span>Life Long Saving 90/2</span></h2>
+                    <p>สรุปตัวอย่างผลประโยชน์โครงการ: อายุ <span id="vp-age">30</span> ปี | เพศ<span id="vp-gender">ชาย</span> | ทุนหลัก <span id="vp-sum" style="color: var(--primary); font-weight: 700; font-size: 18px;">100,000</span></p>
+                </div>
+
+                <div class="lux-box" onclick="openInfographic()">
+                    <div class="lux-box-title"><i class="fa-solid fa-shield-heart"></i> แผนภาพรับความคุ้มครองชีวิตสูงสุด 200%</div>
+                    
+                    <div class="cov-bars-wrapper">
+                        <div class="cov-bar bar-100">
+                            <div class="cov-label">ปีที่ 1 (100%)</div>
+                            <div class="cov-val" id="vp-life1">100,000</div>
+                        </div>
+                        <div class="cov-bar bar-200">
+                            <div class="cov-label">ปีที่ 2 ถึงอายุ 90 (200%)</div>
+                            <div class="cov-val" id="vp-life2">200,000</div>
+                        </div>
+                    </div>
+                    
+                    <div class="lux-pay-pill"><i class="fa-regular fa-clock"></i> ระยะเวลาชำระเบี้ยประกันภัยสั้นสุดๆ เพียง 2 ปี คุ้มครองยาวถึงอายุ 90 ปี</div>
+                    <div class="lux-divider"></div>
+                    <div class="lux-footer">
+                        <div style="flex: 1;">
+                            <div class="cb-left-text">รับเงินคืนระหว่างสัญญาทุกปี</div>
+                            <div class="cb-left-val" style="font-size: 14px;">
+                                ปี 1-5: <span id="vp-cb1" style="color:var(--secondary); font-weight:700;">1,000</span> บ. | 
+                                ปี 6-34: <span id="vp-cb2" style="color:var(--secondary); font-weight:700;">5,000</span> บ.<br>
+                                <span id="vp-cb3-text">ปี 35-อายุ 89: <span id="vp-cb3" style="color:var(--secondary); font-weight:700;">7,000</span> บ.</span>
+                            </div>
+                        </div>
+                        <div class="mat-box-new">
+                            <div class="mat-box-sub">เงินครบกำหนดสัญญา (อายุ 90 ปี)</div>
+                            <div class="mat-box-val" id="vp-mat">200,000</div>
+                        </div>
+                    </div>
+                    <div class="click-hint"><i class="fa-solid fa-hand-pointer"></i> แตะตรงนี้เพื่อเปิดดูแผ่นพับภาพแผนภูมิกราฟิกแบบย่อ หรือปุ่มด้านล่าง</div>
+                </div>
+
+                <div class="summary-grid">
+                    <div class="sg-card">
+                        <div class="sg-title"><i class="fa-solid fa-calculator"></i> สรุปการชำระเบี้ยประกันภัยหลัก</div>
+                        <div class="sg-row"><span>ทุนประกันภัยหลัก</span> <span class="sg-val" id="vp-sum-sg" style="color:var(--text-dark);">100,000</span></div>
+                        <div class="sg-row"><span>เบี้ยประกันภัยหลักรายปี</span> <span class="sg-val" id="vp-prem-yr" style="color:var(--text-dark);">99,900</span></div>
+                        <div class="sg-row"><span>เบี้ยประกันภัยราย 6 เดือน</span> <span class="sg-val" id="vp-prem-half" style="color:var(--text-dark);">51,948</span></div>
+                        <div class="sg-row"><span>เบี้ยประกันภัยรายเดือน</span> <span class="sg-val" id="vp-prem-mo-sg" style="color:var(--text-dark);">8,991</span></div>
+                        <div class="highlight-total" style="background: linear-gradient(135deg, #f0853e, #e86614); box-shadow: 0 5px 15px rgba(232, 102, 20, 0.2); margin-top: auto;">
+                            รวมเงินเบี้ยสะสมจ่าย (2 ปี)
+                            <span id="vp-prem-tot">199,800</span>
+                        </div>
+                    </div>
+                    <div class="sg-card">
+                        <div class="sg-title"><i class="fa-solid fa-sack-dollar"></i> ผลประโยชน์เงินคืนตลอดสัญญา</div>
+                        <div class="sg-row"><span>รวมรับเงินคืนระหว่างสัญญา</span> <span class="sg-val" id="vp-cb-tot" style="color:var(--text-dark);">0</span></div>
+                        <div class="sg-row"><span>เงินคืนครบสัญญาสิ้นปี (อายุ 90)</span> <span class="sg-val" id="vp-mat-sg" style="color:var(--text-dark);">200,000</span></div>
+                        <div class="sg-row"><span>ผลประโยชน์สุทธิ (กำไร)</span> <span class="sg-val" id="vp-profit-sg" style="color:#06C755;">0</span></div>
+                        <div class="highlight-total" style="margin-top: auto;">
+                            รวมรับผลประโยชน์รวมตลอดสัญญา
+                            <span id="vp-all-tot">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="font-size:12px; color:#777; margin-top:15px; line-height: 1.5;">
+                    * กรณีเสียชีวิตบริษัทจะจ่ายทุนประกัน หรือเบี้ยประกันชีวิตสะสมตามจริง หรือมูลค่าเวนคืนกรมธรรม์ แล้วแต่จำนวนใดจะมากกว่า<br>
+                    * เบี้ยประกันภัยของแบบประกันออมทรัพย์นี้ สามารถนำไปลดหย่อนภาษีเงินได้บุคคลธรรมดาได้สูงสุด 100,000 บาทต่อปี ตามหลักเกณฑ์กรมสรรพากร
+                </div>
+            </div>
+
+            <h2 style="margin-top: 15px; margin-bottom: 0;">สรุปคำนวณเบี้ยประกันภัยงวดชำระปัจจุบัน</h2>
+            
+            <div class="premium-summary-card" style="margin-bottom: 20px;">
+                <div>
+                    <h3 style="margin:0; font-size:20px; color:var(--text-dark);">เอฟดับบลิวดี ไลฟ์ลอง เซฟวิ่ง 90/2</h3>
+                    <p style="margin:5px 0 0 0; color:var(--text-grey); font-size:15px;">วางแผนการเงิน ลดหย่อนภาษี และส่งต่อมรดกแบบสบายใจ</p>
+                </div>
+                <div style="text-align:right;">
+                    <div class="display-premium-main" id="display-premium-main">99,900</div>
+                    <div style="font-size:15px; color:var(--text-grey); margin-top:5px; font-weight: 500;" id="display-unit-main">บาท/ปี</div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 15px; margin-top: 20px;">
+                <button class="btn-action-main blue" onclick="openInfographic()" style="flex: 1; padding: 15px; border: none; border-radius: 12px; font-family: 'Prompt', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.3s; color: white; background: linear-gradient(135deg, #1fa4b6, #157e8c); box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <i class="fa-solid fa-image"></i> เปิดดูรูป Infographic แนวนอน
+                </button>
+                <button class="btn-action-main green" onclick="openDetailedTable()" style="flex: 1; padding: 15px; border: none; border-radius: 12px; font-family: 'Prompt', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.3s; color: white; background: linear-gradient(135deg, #06C755, #05a044); box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <i class="fa-solid fa-file-invoice"></i> เปิดตารางข้อเสนอแบบละเอียด
+                </button>
+            </div>
+            
+            <div style="font-size: 13px; font-weight: 400; margin-top: 15px; padding-bottom: 30px; opacity: 0.9; text-align: center;">สามารถสร้างไฟล์ PDF หรือบันทึกเป็นรูปภาพ ส่งต่อให้ลูกค้าพิจารณาได้ทันที</div>
+
+        </div>
+    </div>
+</div>
+
+<div class="sticky-bar" id="sticky-bar">
+    <div class="sticky-content">
+        <div>
+            <div style="font-size: 14px; color: var(--text-grey); font-weight: 500;">แผน <span id="stk-plan">FWD Life Long 90/2</span> • <span id="stk-period">รายปี</span></div>
+            <div style="font-size: 24px; font-weight: 700; color: var(--primary); line-height: 1;"><span id="stk-price">99,900</span> <span style="font-size: 15px; font-weight: 500; color: var(--text-dark);">บาท</span></div>
+        </div>
+        <div class="btn-line" onclick="sendToLineOA()">
+            <i class="fab fa-line" style="font-size: 24px;"></i> ปรึกษาตัวแทน
+        </div>
+    </div>
+</div>
+
+<div id="report-overlay"></div>
+
+<div id="image-lightbox" onclick="this.style.display='none'">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="">
+</div>
+
+<script>
+    const rateConstant = 999; 
+    let currentGender = 'male';
+    let currentPeriod = 'year'; 
+
+    function formatNum(n) { return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+
+    function setGender(g) {
+        currentGender = g;
+        document.getElementById('m-btn').classList.toggle('active', g === 'male');
+        document.getElementById('f-btn').classList.toggle('active', g === 'female');
+        document.getElementById('sum-slider').className = g === 'male' ? 'gender-m' : 'gender-f';
+        calculate();
+    }
+
+    function setPeriod(p) {
+        currentPeriod = p;
+        document.getElementById('p-year').classList.toggle('active', p === 'year');
+        document.getElementById('p-half').classList.toggle('active', p === 'half');
+        document.getElementById('p-month').classList.toggle('active', p === 'month');
+        calculate();
+    }
+
+    function handleManualAge() {
+        document.getElementById('exact-age-display').innerText = ''; 
+        calculate();
+    }
+
+    function calculateAgeFromDOB() {
+        const d = document.getElementById('dob-day').value;
+        const m = document.getElementById('dob-month').value;
+        const y = document.getElementById('dob-year').value;
+        
+        if (d && m && y) {
+            const birthYearAD = parseInt(y) - 543;
+            const dob = new Date(birthYearAD, parseInt(m) - 1, parseInt(d));
+            const today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            const mDiff = today.getMonth() - dob.getMonth();
+            if (mDiff < 0 || (mDiff === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+            if (age < 0) age = 0;
+            document.getElementById('age-input').value = age;
+            document.getElementById('exact-age-display').innerText = 'อายุ: ' + age + ' ปี';
+            calculate();
+        }
+    }
+
+    function handleSlider(val) { 
+        document.getElementById('sum-input').value = val;
+        calculate(); 
+    }
+    
+    function setSum(v) {
+        document.getElementById('sum-slider').value = v;
+        document.getElementById('sum-input').value = v;
+        calculate();
+    }
+
+    function getCalcValues() {
+        const age = parseInt(document.getElementById('age-input').value) || 0;
+        const sumInsured = parseInt(document.getElementById('sum-input').value) || 100000;
+        const genderText = currentGender === 'male' ? 'ชาย' : 'หญิง';
+        const txtPeriodShort = currentPeriod === 'year' ? 'รายปี' : (currentPeriod === 'half' ? 'ราย 6 เดือน' : 'รายเดือน');
+        const custName = document.getElementById('cust-name').value || 'ลูกค้าคนสำคัญ';
+        
+        const annualizedPremium = Math.round((sumInsured / 1000) * rateConstant);
+        let multiplier = currentPeriod === 'year' ? 1 : (currentPeriod === 'half' ? 0.52 : 0.09);
+        let finalPremium = Math.ceil(annualizedPremium * multiplier);
+        
+        const totalPremium = annualizedPremium * 2;
+        
+        const life1 = sumInsured * 1.0;
+        const life2 = sumInsured * 2.0;
+        
+        let cb1 = sumInsured * 0.01; 
+        let cb2 = sumInsured * 0.05; 
+        let cb3 = sumInsured * 0.07; 
+        let matBenefit = sumInsured * 2.0; 
+        
+        let totalCb = 0;
+        let policyYears = 90 - age;
+        
+        for(let yr=1; yr < policyYears; yr++){
+            let cbPct = 0;
+            if(yr <= 5) cbPct = 0.01;
+            else if(age < 55) {
+                if(yr <= 34) cbPct = 0.05;
+                else cbPct = 0.07;
+            } else {
+                cbPct = 0.05;
+            }
+            totalCb += (cbPct * sumInsured);
+        }
+        
+        let allTotalBenefit = totalCb + matBenefit;
+        let netProfit = allTotalBenefit - totalPremium;
+
+        return {
+            age, genderText, sumInsured, txtPeriodShort, annualizedPremium, finalPremium, totalPremium,
+            life1, life2, cb1, cb2, cb3, matBenefit, totalCb, allTotalBenefit, netProfit, policyYears, custName
+        };
+    }
+
+    function calculate() {
+        const v = getCalcValues();
+        const warning = document.getElementById('age-warning');
+        
+        if (v.age < 0 || v.age > 70) {
+            warning.style.display = 'block';
+            return;
+        } else { warning.style.display = 'none'; }
+
+        document.getElementById('sum-display-text').innerText = formatNum(v.sumInsured);
+
+        let periodText = currentPeriod === 'year' ? 'บาท/ปี' : (currentPeriod === 'half' ? 'บาท/6 เดือน' : 'บาท/เดือน');
+        let premiumHalf = Math.ceil(v.annualizedPremium * 0.52);
+        let premiumMonth = Math.ceil(v.annualizedPremium * 0.09);
+
+        document.getElementById('display-premium-main').innerText = formatNum(v.finalPremium);
+        document.getElementById('display-unit-main').innerText = periodText;
+        document.getElementById('stk-price').innerText = formatNum(v.finalPremium);
+        document.getElementById('stk-period').innerText = v.txtPeriodShort;
+
+        if (document.getElementById('vp-age')) {
+            document.getElementById('vp-age').innerText = v.age;
+            document.getElementById('vp-gender').innerText = v.genderText;
+            document.getElementById('vp-sum').innerText = formatNum(v.sumInsured);
+            document.getElementById('vp-sum-sg').innerText = formatNum(v.sumInsured);
+            document.getElementById('vp-life1').innerText = formatNum(v.life1);
+            document.getElementById('vp-life2').innerText = formatNum(v.life2);
+            document.getElementById('vp-cb1').innerText = formatNum(v.cb1);
+            document.getElementById('vp-cb2').innerText = formatNum(v.cb2);
+            
+            if(v.age < 55) {
+                document.getElementById('vp-cb3-text').style.display = 'inline';
+                document.getElementById('vp-cb3').innerText = formatNum(v.cb3);
+            } else {
+                document.getElementById('vp-cb3-text').style.display = 'none';
+            }
+
+            document.getElementById('vp-mat').innerText = formatNum(v.matBenefit);
+            document.getElementById('vp-mat-sg').innerText = formatNum(v.matBenefit);
+            document.getElementById('vp-prem-yr').innerText = formatNum(v.annualizedPremium);
+            document.getElementById('vp-prem-half').innerText = formatNum(premiumHalf);
+            document.getElementById('vp-prem-mo-sg').innerText = formatNum(premiumMonth);
+            document.getElementById('vp-prem-tot').innerText = formatNum(v.totalPremium);
+            document.getElementById('vp-cb-tot').innerText = formatNum(v.totalCb);
+            document.getElementById('vp-profit-sg').innerText = formatNum(v.netProfit);
+            document.getElementById('vp-all-tot').innerText = formatNum(v.allTotalBenefit) + " บาท";
+        }
+        
+        // ซิงค์ตัวเลขเบี้ยประกันกลับไปยังช่องกรอก (โดยไม่รบกวนจังหวะที่ผู้ใช้กำลังพิมพ์)
+        const customPremiumInput = document.getElementById('custom-premium-input');
+        if (customPremiumInput && document.activeElement !== customPremiumInput) {
+            customPremiumInput.value = v.annualizedPremium;
+        }
+    }
+
+    function openInfographic() {
+        const v = getCalcValues();
+        if(v.age < 0 || v.age > 70) return alert("อายุไม่เข้าเกณฑ์เงื่อนไขการรับประกันภัย");
+
+        let cbBoxesHTML = '';
+        if (v.age < 55) {
+            cbBoxesHTML = `
+                <div style="flex:1; text-align:center;">
+                    <div style="background:#1fa4b6; color:white; padding:10px; border-radius:8px; font-weight:bold; font-size:18px;">1%</div>
+                    <div style="margin-top:8px; font-size:13px; color:#555;">ปีที่ 1-5<br><span style="color:#1fa4b6; font-weight:700;">ปีละ ${formatNum(v.cb1)} บ.</span></div>
+                </div>
+                <div style="flex:1; text-align:center;">
+                    <div style="background:#f1b319; color:#222; padding:10px; border-radius:8px; font-weight:bold; font-size:18px;">5%</div>
+                    <div style="margin-top:8px; font-size:13px; color:#b07d04; font-weight:700;">ปีที่ 6-34<br><span style="color:#b07d04; font-weight:700;">ปีละ ${formatNum(v.cb2)} บ.</span></div>
+                </div>
+                <div style="flex:1; text-align:center;">
+                    <div style="background:#06C755; color:white; padding:10px; border-radius:8px; font-weight:bold; font-size:18px;">7%</div>
+                    <div style="margin-top:8px; font-size:13px; color:#555;">ปีที่ 35 - อายุ 89<br><span style="color:#05a044; font-weight:700;">ปีละ ${formatNum(v.cb3)} บ.</span></div>
+                </div>
+            `;
+        } else {
+            cbBoxesHTML = `
+                <div style="flex:1; text-align:center;">
+                    <div style="background:#1fa4b6; color:white; padding:10px; border-radius:8px; font-weight:bold; font-size:18px;">1%</div>
+                    <div style="margin-top:8px; font-size:13px; color:#555;">ปีที่ 1-5<br><span style="color:#1fa4b6; font-weight:700;">ปีละ ${formatNum(v.cb1)} บ.</span></div>
+                </div>
+                <div style="flex:1; text-align:center;">
+                    <div style="background:#f1b319; color:#222; padding:10px; border-radius:8px; font-weight:bold; font-size:18px;">5%</div>
+                    <div style="margin-top:8px; font-size:13px; color:#555;">ปีที่ 6 - อายุ 89<br><span style="color:#b07d04; font-weight:700;">ปีละ ${formatNum(v.cb2)} บ.</span></div>
+                </div>
+            `;
+        }
+
+        let htmlContent = `
+            <button class="close-report-btn" onclick="closeReport()"><i class="fa-solid fa-xmark"></i></button>
+            <div id="report-content-wrapper">
+                <div id="capture-area" style="margin: 0 auto; width: 1122px; max-width: 1122px; min-height: 794px; height: auto; background: #ffffff; position: relative; box-sizing: border-box; padding: 40px 40px 60px 40px; font-family: 'Prompt', sans-serif;">
+                    
+                    <style>
+                        @media print {
+                            @page { size: A4 landscape; margin: 0; }
+                            #capture-area { width: 1122px !important; max-width: 1122px !important; page-break-inside: avoid; }
+                        }
+                        .info-title-main { font-size: 32px; font-weight: 700; color: #e86614; margin: 0 0 5px 0; width: 85%; } /* ปรับความกว้างหลบโลโก้ */
+                        .info-subtitle-main { font-size: 16px; color: #555; font-weight: 500; margin-bottom: 25px; }
+                        
+                        /* เพิ่ม CSS ควบคุมโลโก้ที่นี่ */
+                        .info-fwd-logo { position: absolute; top: 40px; right: 40px; width: 110px; height: auto; z-index: 10; }
+                        
+                        .chart-container-step { position: relative; height: 260px; margin-top: 15px; background: #ffffff; }
+                        .step-container-flex { display: flex; align-items: flex-end; height: 100%; width: 100%; position: relative; z-index: 2; padding-left: 140px; box-sizing: border-box; }
+                        .chart-step-block { color: white; text-align: center; display: flex; flex-direction: column; justify-content: flex-start; box-shadow: 0 4px 15px rgba(0,0,0,0.08); position: relative; margin-right: 2px; box-sizing: border-box; padding-top: 20px;}
+                        .step-pct { font-size: 28px; font-weight: 700; }
+                        .step-lbl-range { font-size: 14px; opacity: 0.9; margin-top: 2px; }
+                        .step-amt-life { font-size: 18px; font-weight: 700; margin-top: 10px; background: rgba(255,255,255,0.15); padding: 5px 0; }
+                        
+                        .s1 { background: #f0853e; height: 130px; width: 180px; border-radius: 8px 0 0 0; }
+                        .s2 { background: #cb5308; height: 250px; width: 660px; border-radius: 0 8px 0 0; }
+                        
+                        .y-label-title { position: absolute; left: 0; top: 100px; font-size: 16px; font-weight: 600; color: #444; width: 120px; text-align: right; line-height: 1.3; }
+                        
+                        .pay-duration-row { display: flex; align-items: center; padding-left: 140px; margin-top: 10px; position: relative; }
+                        .timeline-title-left { position: absolute; left: 0; font-size: 14px; font-weight: 600; color: #555; width: 120px; text-align: right; }
+                        .pay-bar-stretch { width: 180px; background: #fce4d6; color: #c04900; text-align: center; padding: 6px 0; font-size: 14px; font-weight: 700; border-radius: 4px; z-index: 2; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.05); border: 1px solid #f0853e;}
+                        
+                        .cashback-row-dots { display: flex; align-items: center; padding-left: 140px; margin-top: 25px; position: relative; }
+                        
+                        .info-footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 30px; border-top: 2px dashed #eee; padding-top: 20px; margin-bottom: 30px; }
+                        .ft-box-card { padding: 15px; border-radius: 12px; background: #fffaf5; border: 1px solid #fce4d6; }
+                        .ft-box-card h4 { margin: 0 0 10px 0; font-size: 15px; color: #1a1e29; font-weight: 700; border-bottom: 2px solid #fff; padding-bottom: 6px; }
+                        .ft-row-data { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; font-weight: 500; }
+                        .ft-row-data span.v { font-weight: 700; color: #e86614; }
+                        
+                        .agent-badge-info { background: #e3f2eb; border: 1px solid #c2e0d1; display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 12px; }
+                    </style>
+
+                    <img src="logo.png" alt="FWD Logo" class="info-fwd-logo">
+                    
+                    <div class="info-title-main">แผนภาพผลประโยชน์และความคุ้มครองชีวิต</div>
+                    <div class="info-subtitle-main">แผนประกันชีวิต: เอฟดับบลิวดี ไลฟ์ลอง เซฟวิ่ง 90/2 (FWD Life Long 90/2) | เรียนเสนอคุณ: <strong>${v.custName}</strong></div>
+                    
+                    <div class="chart-container-step">
+                        <div class="y-label-title">ความคุ้มครองชีวิต<br><span style="font-size:12px; font-weight:normal; color:#777;">(% ทุนประกันภัย)</span></div>
+                        <div class="step-container-flex">
+                            <div class="chart-step-block s1"><div class="step-pct">100%</div><div class="step-lbl-range">ปีที่ 1</div><div class="step-amt-life">คุ้มครอง ${formatNum(v.life1)}</div></div>
+                            <div class="chart-step-block s2"><div class="step-pct">200%</div><div class="step-lbl-range">ปีที่ 2 ถึงอายุ 90 ปี</div><div class="step-amt-life">ความคุ้มครองสูงสุด ${formatNum(v.life2)}</div></div>
+                        </div>
+                    </div>
+                    
+                    <div class="pay-duration-row">
+                        <div class="timeline-title-left" style="font-size:13px; color:#666; margin-top:5px;">ระยะเวลาชำระเบี้ย</div>
+                        <div class="pay-bar-stretch">ชำระเบี้ยสั้น 2 ปี</div>
+                        <div style="flex:1; height:2px; background:#ddd; margin-left:15px; position:relative;">
+                            <div style="position:absolute; right:0; top:-10px; font-size:14px; font-weight:bold; color:#777;">คุ้มครองยาวถึงอายุ 90 ปี <i class="fa-solid fa-arrow-right"></i></div>
+                        </div>
+                    </div>
+                    
+                    <div class="cashback-row-dots">
+                        <div class="timeline-title-left" style="margin-top:15px;">ผลประโยชน์<br>เงินคืนรายปี</div>
+                        <div style="display: flex; width: 840px; align-items: flex-start; gap: 10px;">
+                            ${cbBoxesHTML}
+                            <div style="width: 40px; text-align: center; font-weight: bold; color: #e86614; font-size: 24px; padding-top: 10px;">+</div>
+                            <div style="width: 200px; text-align: center;">
+                                <div style="background:#e86614; color:white; padding:10px; border-radius:8px; font-weight:bold; font-size:18px;">200%</div>
+                                <div style="margin-top:8px; font-size:13px; color:#555;">อายุ 90 ปี (ครบสัญญา)<br><span style="color:#e86614; font-weight:700; font-size: 15px;">รับเงินก้อน ${formatNum(v.matBenefit)} บ.</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-footer-grid">
+                        <div class="ft-box-card">
+                            <h4><i class="fa-solid fa-user-check"></i> ข้อมูลผู้เอาประกันภัย</h4>
+                            <div class="ft-row-data"><span>เพศ:</span> <span class="v">${v.genderText}</span></div>
+                            <div class="ft-row-data"><span>อายุเริ่มสัญญา:</span> <span class="v">${v.age} ปี</span></div>
+                            <div class="ft-row-data"><span>ทุนประกัน:</span> <span class="v">${formatNum(v.sumInsured)} บ.</span></div>
+                            <div class="ft-row-data"><span>เบี้ยประกัน/รายปี:</span> <span class="v">${formatNum(v.annualizedPremium)} บ.</span></div>
+                            <div class="ft-row-data"><span>รวมเบี้ยสะสม (2 ปี):</span> <span class="v" style="color:#d15a10;">${formatNum(v.totalPremium)} บ.</span></div>
+                        </div>
+                        
+                        <div class="ft-box-card" style="background:#fffcf5; border-color:#f5d6c1;">
+                            <h4><i class="fa-solid fa-coins"></i> สรุปผลประโยชน์ตลอดสัญญา</h4>
+                            <div class="ft-row-data"><span>รวมเงินคืนระหว่างทาง:</span> <span class="v">${formatNum(v.totalCb)} บ.</span></div>
+                            <div class="ft-row-data"><span>เงินครบกำหนดสัญญา:</span> <span class="v">${formatNum(v.matBenefit)} บ.</span></div>
+                            <div class="ft-row-data" style="margin-top:4px; border-top:1px dashed #ddd; padding-top:6px; font-weight:700;">
+                                <span>รวมรับผลประโยชน์สูงสุด:</span> <span class="v" style="color:#06C755;">${formatNum(v.allTotalBenefit)} บ.</span>
+                            </div>
+                            <div class="ft-row-data"><span>กำไรสุทธิส่วนต่าง:</span> <span class="v" style="color:#1fa4b6;">${formatNum(v.netProfit)} บ.</span></div>
+                        </div>
+                        
+                        <div class="agent-badge-info">
+                            <img src="agent.png" alt="จรัสพร ศรีฉันทะมิตร" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.src='https://placehold.co/300x300/f5f5f5/999?text=Agent'">
+                            <div style="line-height:1.4;">
+                                <strong style="color:#24625f; font-size:15px;">ผู้ดูแล: จรัสพร ศรีฉันทะมิตร (มด)</strong><br>
+                                <span style="font-size:13px; color:#555;"> <span style="font-weight: 300;">สำนักงานตัวแทน FWD นวนคร</span></span><br>
+                                <span style="font-size:14px; color:#555;">ใบอนุญาตฯ: <strong>6901011517</strong></span><br>
+                                <span style="font-size:16px; color:#e86614; font-weight:700;"><i class="fa-solid fa-phone"></i> โทร: 086-901-7235</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="btn-act btn-print"><i class="fa-solid fa-print"></i> พิมพ์เอกสาร</button>
+                    <button onclick="saveAsImage('l')" class="btn-act btn-save" id="save-btn-info"><i class="fa-solid fa-image"></i> บันทึกรูปภาพ</button>
+                    <button onclick="saveAsPDF('l')" class="btn-act btn-pdf" id="pdf-btn-info"><i class="fa-solid fa-file-pdf"></i> บันทึก PDF</button>
+                </div>
+
+            </div>
+        `;
+        document.getElementById('main-content').style.display = 'none';
+        document.getElementById('sticky-bar').style.display = 'none';
+        const overlay = document.getElementById('report-overlay');
+        overlay.innerHTML = htmlContent;
+        overlay.style.display = 'block';
+        window.scrollTo(0,0);
+    }
+
+    function openDetailedTable() {
+        const v = getCalcValues();
+        if(v.age < 0 || v.age > 70) return alert("อายุไม่เข้าเกณฑ์เงื่อนไขการรับประกันภัย");
+
+        let htmlTableBody = '';
+        let cumPrem = 0;
+        let cumCb = 0;
+        
+        for (let year = 1; year <= v.policyYears; year++) {
+            let currentAge = v.age + year - 1; 
+            let premiumPaid = year <= 2 ? v.annualizedPremium : 0;
+            cumPrem += premiumPaid;
+            
+            let life = year === 1 ? v.sumInsured : v.sumInsured * 2;
+            if (cumPrem > life) life = cumPrem; 
+            
+            let cashback = 0;
+            let cbString = "";
+            if(year === v.policyYears) {
+                cashback = v.matBenefit;
+                cbString = `${formatNum(cashback)}<br><span style="color:#06C755; font-size:12px; font-weight:700;">(ครบสัญญาเงินก้อน)</span>`;
+            } else {
+                let cbPct = 0;
+                if(year <= 5) cbPct = 0.01;
+                else if(v.age < 55) {
+                    if(year <= 34) cbPct = 0.05;
+                    else cbPct = 0.07;
+                } else {
+                    cbPct = 0.05;
+                }
+                cashback = cbPct * v.sumInsured;
+                cbString = formatNum(cashback);
+            }
+            cumCb += cashback;
+
+            htmlTableBody += `
+                <tr>
+                    <td>${year}</td>
+                    <td>${currentAge}</td>
+                    <td>${premiumPaid > 0 ? formatNum(premiumPaid) : '-'}</td>
+                    <td>${formatNum(cumPrem)}</td>
+                    <td>${formatNum(life)}</td>
+                    <td class="bold-orange" style="${year === v.policyYears ? 'line-height:1.2; padding:4px;' : ''}">${cbString}</td>
+                    <td style="font-weight: 600;">${formatNum(cumCb)}</td>
+                </tr>
+            `;
+        }
+
+        let htmlContent = `
+            <button class="close-report-btn" onclick="closeReport()"><i class="fa-solid fa-xmark"></i></button>
+            <div id="report-content-wrapper">
+                <div id="capture-area" style="margin: 0 auto; max-width: 950px; background: white; padding: 40px 20px 60px 20px; border-radius: 12px; position: relative; box-sizing: border-box;">
+                    
+                    <style>
+                        @media print {
+                            @page { size: A4 portrait; margin: 8mm; }
+                            #capture-area { width: 100% !important; max-width: 100% !important; padding: 0 !important; }
+                            table { font-size: 11px !important; }
+                            th, td { padding: 6px 4px !important; }
+                            tr { page-break-inside: avoid; }
+                        }
+                        .t-header h1 { color: #e86614; margin: 0 0 5px 0; font-size: 26px; font-weight: 700; text-align: center; }
+                        .t-header h3 { color: #444; margin: 0; font-size: 16px; font-weight: 500; text-align: center; margin-bottom: 20px;}
+                        .t-divider { height: 2px; background: #e86614; width: 100%; margin-bottom: 20px; }
+                        
+                        .t-info-grid { border: 1px solid #f3d8c6; border-radius: 12px; padding: 20px 30px; margin-bottom: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 30px; background: #fffaf7; }
+                        .info-col-data { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+                        .info-col-data .lbl { color: #333; font-weight: 500; }
+                        .info-col-data .val { font-weight: 700; color: #e86614; }
+                        
+                        table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: center; margin-bottom: 25px; }
+                        th { background-color: #c04900; color: white; padding: 10px 4px; font-weight: 500; border: 1px solid #a83f00; }
+                        td { padding: 8px 4px; border: 1px solid #eee; color: #333; }
+                        tr:nth-child(even) td { background-color: #fafafa; }
+                        .bold-orange { font-weight: 700; color: #e86614; }
+                        
+                        .s-box-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px; }
+                        .s-card-data { text-align: center; padding: 20px 10px; border-radius: 12px; }
+                        .s-card-data .t { font-size: 13px; margin-bottom: 8px; font-weight: 500; }
+                        .s-card-data .v { font-size: 22px; font-weight: 700; }
+                        
+                        .tbl-footer-new-main { margin: 0 auto; padding-top: 20px; border-top: 1px dashed #ccc; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+                        .tbl-f-left { display: flex; align-items: center; gap: 15px; }
+                        .tbl-f-right { text-align: right; }
+                    </style>
+
+                    <div class="t-wrapper">
+                        <div class="t-header">
+                            <h1>ตารางผลประโยชน์เงินคืนและประมาณการความคุ้มครอง</h1>
+                            <h3>แผนประกันชีวิต: เอฟดับบลิวดี ไลฟ์ลอง เซฟวิ่ง 90/2 (FWD Life Long 90/2)</h3>
+                        </div>
+                        <div class="t-divider"></div>
+                        
+                        <div class="t-info-grid">
+                            <div class="info-col-data" style="grid-column: 1 / -1; border-bottom: 1px dashed #e2cbb9; padding-bottom: 8px;"><span class="lbl">เรียนเสนอคุณ:</span> <span class="val" style="font-size:16px;">${v.custName}</span></div>
+                            <div class="info-col-data"><span class="lbl">เพศผู้เอาประกันภัย:</span> <span class="val">${v.genderText}</span></div>
+                            <div class="info-col-data"><span class="lbl">อายุแรกเริ่มสัญญา:</span> <span class="val">${v.age} ปี</span></div>
+                            <div class="info-col-data"><span class="lbl">ทุนประกันภัยหลัก:</span> <span class="val">${formatNum(v.sumInsured)} บาท</span></div>
+                            <div class="info-col-data"><span class="lbl">เบี้ยประกันภัยรายปีหลัก:</span> <span class="val">${formatNum(v.annualizedPremium)} บาท</span></div>
+                            <div class="info-col-data"><span class="lbl">ระยะเวลาชำระเบี้ย:</span> <span class="val">2 ปี</span></div>
+                            <div class="info-col-data"><span class="lbl">ระยะเวลาคุ้มครอง:</span> <span class="val">ถึงอายุ 90 ปี</span></div>
+                        </div>
+                        
+                        <div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>สิ้นปี<br>กรมธรรม์</th>
+                                        <th>อายุ<br>(ปี)</th>
+                                        <th>เบี้ยประกันที่ชำระ<br>ในงวดปีนั้น</th>
+                                        <th>เงินเบี้ยประกัน<br>สะสมฝาก</th>
+                                        <th>ความคุ้มครองชีวิต<br>(ขั้นต่ำ)</th>
+                                        <th>เงินปันผลคืน<br>ระหว่างปี</th>
+                                        <th>ผลประโยชน์<br>สะสมรวม</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${htmlTableBody}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="s-box-container">
+                            <div class="s-card-data" style="background:#f9ebd2; color:#c04900;">
+                                <div class="t">รวมเบี้ยฝากจ่ายตลอดโครงการ</div>
+                                <div class="v">${formatNum(v.totalPremium)} บาท</div>
+                            </div>
+                            <div class="s-card-data" style="background:#e3f2eb; color:#24625f;">
+                                <div class="t">รวมรับเงินคืนตลอดสัญญา</div>
+                                <div class="v" style="color:#06C755;">${formatNum(v.allTotalBenefit)} บาท</div>
+                            </div>
+                            <div class="s-card-data" style="background:#f0f4f8; color:#333;">
+                                <div class="t">ผลประโยชน์สุทธิ (กำไร)</div>
+                                <div class="v" style="color:#1fa4b6;">${formatNum(v.netProfit)} บาท</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tbl-footer-new-main">
+                            <div class="tbl-f-left">
+                                <img src="agent.png" alt="จรัสพร ศรีฉันทะมิตร" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 2px solid #e86614;" onerror="this.src='https://placehold.co/300x300/f5f5f5/999?text=Agent'">
+                                <div style="line-height:1.4;">
+                                    <strong style="color:#e86614; font-size:16px;">ผู้ดูแลบัญชี: จรัสพร ศรีฉันทะมิตร (มด)</strong><br>
+                                    <span style="font-size:13px; color:#444; font-weight:500;">ตัวแทนประกันชีวิต / <span style="font-weight: 300;">สำนักงานตัวแทน FWD นวนคร</span></span><br>
+                                    <span style="font-size:13px; color:#555;">ใบอนุญาตตัวแทนประกันชีวิต: <strong>6901011517</strong></span>
+                                </div>
+                            </div>
+                            <div class="tbl-f-right">
+                                <strong style="color: #333; font-size:15px;">ติดต่อสอบถาม หรือ ทำสัญญา</strong><br>
+                                <span style="font-size: 18px; font-weight: bold; color: #000; margin-top: 5px; display: block;"><i class="fa-solid fa-phone" style="color: #e86614;"></i> โทร: 086-901-7235</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="btn-act btn-print"><i class="fa-solid fa-print"></i> พิมพ์เอกสาร</button>
+                    <button onclick="saveAsImage('p')" class="btn-act btn-save" id="save-btn-tbl"><i class="fa-solid fa-image"></i> บันทึกรูปภาพ</button>
+                    <button onclick="saveAsPDF('p')" class="btn-act btn-pdf" id="pdf-btn-tbl"><i class="fa-solid fa-file-pdf"></i> บันทึก PDF</button>
+                </div>
+
+            </div>
+        `;
+
+        document.getElementById('main-content').style.display = 'none';
+        document.getElementById('sticky-bar').style.display = 'none';
+        
+        const overlay = document.getElementById('report-overlay');
+        overlay.innerHTML = htmlContent;
+        overlay.style.display = 'block';
+        window.scrollTo(0,0);
+    }
+
+    function closeReport() {
+        document.getElementById('report-overlay').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+        if (window.scrollY > 220) {
+            document.getElementById('sticky-bar').style.display = 'block';
+        }
+        window.scrollTo(0,0);
+    }
+
+    function saveAsImage(orientation = 'p') {
+        const btnId = orientation === 'l' ? 'save-btn-info' : 'save-btn-tbl';
+        const btn = document.getElementById(btnId);
+        if(btn) {
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> กำลังประมวลผล...';
+            btn.disabled = true;
+        }
+
+        window.scrollTo(0,0);
+        const target = document.getElementById("capture-area");
+        const targetWidth = orientation === 'l' ? 1122 : 950;
+        
+        setTimeout(() => {
+            html2canvas(target, {
+                scale: 2,
+                backgroundColor: "#ffffff",
+                useCORS: true,
+                logging: false,
+                windowWidth: targetWidth + 50
+            }).then(canvas => {
+                const imgData = canvas.toDataURL("image/jpeg", 0.95);
+                const wrapper = document.getElementById('report-content-wrapper');
+                wrapper.innerHTML = `
+                    <div style="text-align:center; padding: 20px; max-width: 900px; margin: 0 auto;">
+                        <h2 style="color: #06C755; margin:0 0 10px 0;"><i class="fa-solid fa-circle-check"></i> สร้างรูปภาพสำเร็จ!</h2>
+                        <div style="background: #fff3cd; color: #856404; padding: 15px; border-radius: 8px; margin-bottom: 25px; font-size: 14px; text-align:left; border: 1px solid #ffeeba; line-height:1.5;">
+                            • <b>มือถือ/แท็บเล็ต:</b> แตะค้างที่รูปภาพด้านล่างแล้วเลือกคำสั่ง <b>"บันทึกรูปภาพ"</b> หรือแชร์ต่อเข้า LINE ได้เลยค่ะ<br>
+                            • <b>คอมพิวเตอร์:</b> คลิกขวาที่ภาพด้านล่างแล้วเลือก <b>"บันทึกรูปภาพเป็น..." (Save image as...)</b>
+                        </div>
+                        <img src="${imgData}" onclick="document.getElementById('lightbox-img').src=this.src; document.getElementById('image-lightbox').style.display='block';" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); cursor: zoom-in; border:1px solid #ddd;">
+                        <br><br>
+                        <button onclick="closeReport()" style="background:#333; color:white; padding:12px 35px; border:none; border-radius:8px; font-family:'Prompt'; font-size:16px; font-weight:600; cursor:pointer;">
+                            <i class="fa-solid fa-arrow-left"></i> กลับไปหน้าหลัก
+                        </button>
+                    </div>
+                `;
+            }).catch(err => {
+                alert("เกิดข้อผิดพลาดในการสร้างรูป: " + err.message);
+                if(btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fa-solid fa-image"></i> บันทึกรูปภาพ';
+                }
+            });
+        }, 500);
+    }
+
+    function saveAsPDF(orientation = 'p') {
+        const btnId = orientation === 'l' ? 'pdf-btn-info' : 'pdf-btn-tbl';
+        const btn = document.getElementById(btnId);
+        if(btn) {
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> กำลังสร้าง PDF...';
+            btn.disabled = true;
+        }
+
+        window.scrollTo(0,0);
+        const target = document.getElementById("capture-area");
+        const targetWidth = orientation === 'l' ? 1122 : 950;
+
+        setTimeout(() => {
+            html2canvas(target, {
+                scale: 2,
+                backgroundColor: "#ffffff",
+                useCORS: true,
+                logging: false,
+                windowWidth: targetWidth + 50
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                const { jsPDF } = window.jspdf;
+                
+                const pdfWidth = canvas.width / 2.5; 
+                const pdfHeight = canvas.height / 2.5;
+                
+                const pdf = new jsPDF(orientation, 'pt', [pdfWidth, pdfHeight]);
+                
+                pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight, undefined, 'FAST');
+                
+                const fileName = `ข้อเสนอ_FWD_LifeLong90-2_${document.getElementById('cust-name').value || 'ลูกค้า'}.pdf`;
+                pdf.save(fileName);
+                
+                if(btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fa-solid fa-file-pdf"></i> บันทึก PDF';
+                }
+            }).catch(err => {
+                alert("ไม่สามารถสร้างไฟล์ PDF ได้: " + err.message);
+                if(btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fa-solid fa-file-pdf"></i> บันทึก PDF';
+                }
+            });
+        }, 800);
+    }
+
+    window.addEventListener('scroll', function() {
+        const stickyBar = document.getElementById('sticky-bar');
+        if (document.getElementById('report-overlay').style.display === 'block') {
+            stickyBar.style.display = 'none';
+            return;
+        }
+        if (window.scrollY > 220) {
+            stickyBar.style.display = 'block';
+        } else {
+            stickyBar.style.display = 'none';
+        }
+    });
+
+    function sendToLineOA() {
+        const custName = document.getElementById('cust-name').value || 'ไม่ระบุชื่อ';
+        const age = document.getElementById('age-input').value || 30;
+        const gender = currentGender === 'male' ? 'ชาย' : 'หญิง';
+        const sum = document.getElementById('sum-display-text').innerText;
+        const plan = 'เอฟดับบลิวดี ไลฟ์ลอง เซฟวิ่ง 90/2';
+        let periodLbl = currentPeriod === 'year' ? 'ปี' : (currentPeriod === 'half' ? '6 เดือน' : 'เดือน');
+        const price = document.getElementById('stk-price').innerText;
+
+        const message = `สนใจสอบถามโครงการ: ${plan}\nชื่อลูกค้า: ${custName}\nข้อมูลเพศผู้เอาประกัน: ${gender}\nอายุ: ${age} ปี\nขนาดวงเงินทุนประกันหลัก: ${sum} บาท\nคำนวณเบี้ยประกันสุทธิประมาณ: ${price} บาท/${periodLbl}\nต้องการปรึกษาเพื่อทำสัญญาค่ะ`;
+
+        const openLineURL = () => {
+            alert("📋 คัดลอกรายละเอียดแล้ว!\nคุณสามารถกด 'วาง' ในช่องแชท LINE เพื่อส่งข้อมูลได้ทันที");
+            window.open("https://lin.ee/uuD3r1S", "_blank");
+        };
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(message).then(openLineURL).catch(() => {
+                window.open("https://lin.ee/uS2hb0q", "_blank");
+            });
+        } else {
+            const textArea = document.createElement("textarea");
+            textArea.value = message;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                openLineURL();
+            } catch (err) {
+                window.open("https://lin.ee/uS2hb0q", "_blank");
+            }
+            document.body.removeChild(textArea);
+        }
+    }
+
+    function calcSumFromPremium(premium) {
+        if (!premium || isNaN(premium) || premium <= 0) return;
+        
+        // สูตร: ทุนประกัน = (เบี้ยรายปี / 999) * 1000
+        let calcSum = (parseFloat(premium) / rateConstant) * 1000;
+        calcSum = Math.round(calcSum); // ปัดเศษให้เป็นจำนวนเต็ม
+        
+        document.getElementById('sum-input').value = calcSum;
+        
+        // ขยับ Slider ตาม หากค่าอยู่ในช่วง min-max
+        let slider = document.getElementById('sum-slider');
+        if (calcSum >= parseInt(slider.min) && calcSum <= parseInt(slider.max)) {
+            slider.value = calcSum;
+        }
+        
+        calculate();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const daySelect = document.getElementById('dob-day');
+        if (daySelect && daySelect.options.length <= 1) { 
+            for(let i = 1; i <= 31; i++) daySelect.add(new Option(i, i));
+        }
+
+        const yearSelect = document.getElementById('dob-year');
+        if (yearSelect && yearSelect.options.length <= 1) {
+            const currentYearBE = new Date().getFullYear() + 543;
+            for(let i = currentYearBE; i >= currentYearBE - 80; i--) yearSelect.add(new Option(i, i));
+        }
+        calculate();
+    });
+</script>
+</body>
+</html>
